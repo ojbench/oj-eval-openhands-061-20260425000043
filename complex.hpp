@@ -161,16 +161,21 @@ std::ostream &operator<<(std::ostream &os, const complex &x) {
   os << std::fixed << std::setprecision(6);
   
   // Handle real part
+  // If real part is negative (less than -1e-6), output with minus sign
+  // Otherwise, output without sign (even if positive, as per the problem)
   if (sign(x.a) == -1) {
     os << x.a;
   } else {
+    // For non-negative real part, don't output a plus sign
     os << x.a;
   }
   
   // Handle imaginary part
   if (sign(x.b) == -1) {
+    // For negative imaginary part, output with minus sign
     os << x.b << "i";
   } else {
+    // For non-negative imaginary part, output with plus sign
     os << "+" << x.b << "i";
   }
   
